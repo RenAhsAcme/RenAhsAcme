@@ -41,3 +41,5 @@ I'm an UGRD student at Sun Yat-sen university (China Mainland), currently on the
 - Uploaded my first self-developed repository.
 
 *(All words (English Ver.) from mine may exist AIGC or incorrect expression. Unless other wise agreed by parties, in case of discrepancy between the Chinese version and the English version, the Chinese version shall prevail.)*
+
+*I can use both Simplified Chinese and English. In some cases, I may employ AI tools to assist in understanding content beyond Simplified Chinese or provide responses with English translations, but all interpretations should be based on the Chinese version.*
