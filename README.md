@@ -44,6 +44,8 @@ I'm an UGRD student at Sun Yat-sen university (Chinese Mainland), currently on t
 
 *I can use both Simplified Chinese and English. In some cases, I may employ AI tools to assist in understanding content beyond Simplified Chinese or provide responses with English translations, but all interpretations should be based on the Chinese version.*
 
+*When some content is primarily targeted at people in China (including Mainland, Hong Kong, Macao and Taiwan), and the text is difficult to translate, an English version will not be provided.*
+
 请注意，我的所有仓库同时受到反 996 许可证的约束。对于其可能与仓库中其它许可证产生冲突的条款，以最严格的约束限制为准。
 
 All repositories are additionally subject to the Anti-996 License. In case of any conflict between this license and other licenses contained in the repository, the stricter terms shall apply.
