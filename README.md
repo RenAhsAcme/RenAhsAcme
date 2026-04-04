@@ -1,3 +1,5 @@
+![DanHeng](./DanHeng.jpeg)
+
 ## 你好！👋
 
 我是一名中山大学在读本科生，正在进步中！
@@ -8,21 +10,27 @@
 
 **😄我喜欢：**
 
-- 强迫症晚期，无药可救！热衷于为了完美重构一切事物，无论是代码还是现实中的任何事物。
+- 强迫症晚期，无药可救！热衷于为了完美重构一切事物，无论是代码还是现实中的任何事物
 
-- 喜欢数码，喜欢捣鼓，但不是合格的垃圾佬。
+- 我认为一切无论什么都应当以优雅的手段实现
 
-- 喜欢弹钢琴，喜欢玩一些游戏
+- 喜欢数码，喜欢捣鼓，但不是合格的垃圾佬
+
+- 喜欢弹钢琴，喜欢玩一些二游
+
+- 渗透任何东西,我始终认为安全与隐私是一切代码运行的前提
 
 **🔭我想要但还没有：**
 
-- 提交第一个 PR
+- 迭代出第一个由我自己开发的成品 Repository
 
-- 迭代出第一个由我自己开发的 Repository
+<details>
 
+  <summary>English Ver.</summary>
+  
 ## Hi there👋
 
-I'm an UGRD student at Sun Yat-sen university (Chinese Mainland), currently on the journey of leveling up!
+I'm an UGRD student at Sun Yat-sen University (Chinese Mainland), currently on the journey of leveling up!
 
 **🌱I'm currently:**
 
@@ -30,21 +38,31 @@ I'm an UGRD student at Sun Yat-sen university (Chinese Mainland), currently on t
 
 **😄I love:**
 
-- Being an incurable perfectionist! Passionate about refactoring everything for perfection, whether it's code or anything in real life.
+- Being an incurable perfectionist! Passionate about refactoring everything for perfection, whether it's code or anything in real life
 
-- Playing the piano and diving into some games
+- Everything which is done elegantly
+
+- Digital and tinkering
+
+- Playing the piano and diving into ACG
+
+- Penetrating anything, I always believe that security and privacy are the prerequisites for all code to run
 
 **🔭I wish but haven't yet:**
 
-- Submitted my first PR
-
-- Uploaded my first self-developed repository.
+- Uploaded my first self-developed finished repository.
 
 *(All words (English Ver.) from mine may exist AIGC or incorrect expression. Unless other wise agreed by parties, in case of discrepancy between the Chinese version and the English version, the Chinese version shall prevail.)*
 
 *I can use both Simplified Chinese and English. In some cases, I may employ AI tools to assist in understanding content beyond Simplified Chinese or provide responses with English translations, but all interpretations should be based on the Chinese version.*
 
 *When some content is primarily targeted at people in China (including Mainland, Hong Kong, Macao and Taiwan), and the text is difficult to translate, an English version will not be provided.*
+
+</details>
+
+<details>
+
+  <summary>表态：反 996  Statement: Anit-996</summary>
 
 请注意，我的所有仓库同时受到反 996 许可证的约束。对于其可能与仓库中其它许可证产生冲突的条款，以最严格的约束限制为准。
 
@@ -120,3 +138,5 @@ IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM,
 DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN ANY WAY CONNECTION WITH THE
 LICENSED WORK OR THE USE OR OTHER DEALINGS IN THE LICENSED WORK.
+
+</details>
