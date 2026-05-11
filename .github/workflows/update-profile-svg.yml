@@ -1,0 +1,43 @@
+name: Update Profile SVG
+
+on:
+  schedule:
+    # Runs every 6 hours (at 07:17, 13:17, 19:17, 01:17 UTC — off-peak minutes)
+    - cron: "17 */6 * * *"
+  push:
+    branches: [main]
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Needed to commit the SVG back
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate SVG
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python generate_svg.py --output profile.svg
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet profile.svg; then
+            echo "No changes — skipping commit."
+          else
+            git add profile.svg
+            git commit -m "chore: update profile SVG [skip ci]"
+            git push
+            echo "Pushed updated profile.svg."
+          fi
