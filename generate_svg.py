@@ -495,10 +495,23 @@ def _section_label(x, y, text, accent=ACCENT_BLUE):
     return "\n".join(parts)
 
 
+def _est_text_width(text, font_size=12):
+    """估算文本像素宽度。CJK/全角字符按 font_size px，ASCII/半角按 font_size × 0.6 px。"""
+    w = 0.0
+    for ch in text:
+        cp = ord(ch)
+        # CJK 统一表意文字、中文标点、全角字符
+        if (0x4E00 <= cp <= 0x9FFF or 0x3000 <= cp <= 0x303F
+                or 0xFF00 <= cp <= 0xFFEF or 0x2E80 <= cp <= 0x2FDF):
+            w += font_size
+        else:
+            w += font_size * 0.6
+    return w
+
+
 def _badge(x, y, text, bg="#1a2a3a", fg=ACCENT_BLUE):
     """渲染圆角标签。返回 (占用宽度, SVG 片段)，便于调用方排列。"""
-    # 文本宽度粗略估算：12px 字号中文约 12px/字，英文约 7px/字，这里取保守估计
-    tw = len(text) * 7 + 20
+    tw = int(_est_text_width(text, font_size=12) + 20)
     parts = []
     parts.append(f'<rect x="{x}" y="{y}" width="{tw}" height="24" '
                  f'rx="12" fill="{bg}"/>')
@@ -617,7 +630,7 @@ def build_svg(data, lang="zh"):
     badge_limit = col2_x - 16
     for tag, bg_c, fg_c in T["research_tags"]:
         # 先估算标签宽度，放不下则提前换行（修复溢出 bug）
-        est_w = len(tag) * 7 + 20 + 8
+        est_w = int(_est_text_width(tag) + 20 + 8)
         if bx > col1_x and bx + est_w > badge_limit:
             bx = col1_x
             by += 32
