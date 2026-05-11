@@ -1,18 +1,17 @@
 #!/usr/bin/env python3
 """
-GitHub Profile SVG Generator for RenAhsAcme.
+GitHub 个人主页 SVG 卡片生成器。
 
-Fetches live data from GitHub API (REST + GraphQL) and generates a
-dark-minimal profile card SVG. Designed to run via GitHub Actions on
-a schedule — zero maintenance after initial setup.
+用法:
+    python generate_svg.py --output profile.svg    # 生成中/英双版本
+    python generate_svg.py -o card.svg -l zh        # 仅生成中文
+    python generate_svg.py -o card.svg -l en        # 仅生成英文
 
-Usage:
-    python generate_svg.py [--output profile.svg]
-
-Environment:
-    GITHUB_TOKEN    GitHub personal access token (required for GraphQL)
+环境变量:
+    GITHUB_TOKEN    GitHub 令牌（GraphQL 查询必须，Actions 中自动提供）
 """
 
+import base64
 import json
 import os
 import sys
@@ -22,13 +21,13 @@ from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 
 # ---------------------------------------------------------------------------
-# Configuration
+# 全局配置
 # ---------------------------------------------------------------------------
 
 USERNAME = "RenAhsAcme"
 OUTPUT = "profile.svg"
 
-# Colors — GitHub-dark inspired palette with subtle cyber accents
+# 配色方案 — GitHub Dark 为底，辅以微妙的赛博风格强调色
 BG = "#0d1117"
 CARD_BG = "#161b22"
 BORDER = "#30363d"
@@ -41,37 +40,37 @@ ACCENT_PURPLE = "#a371f7"
 ACCENT_ORANGE = "#d2991d"
 ACCENT_CYAN = "#39d2c0"
 
-# Contribution heatmap colours (GitHub-style greens, desaturated for dark bg)
+# 贡献热力图配色（GitHub 风格绿色，针对暗色背景做去饱和处理）
 HEAT_COLORS = [
-    CARD_BG,     # 0
-    "#0e4429",   # 1-3
-    "#006d32",   # 4-7
-    "#26a641",   # 8-12
-    "#39d353",   # 13+
+    CARD_BG,     # 0 次
+    "#0e4429",   # 1-3 次
+    "#006d32",   # 4-7 次
+    "#26a641",   # 8-12 次
+    "#39d353",   # 13 次以上
 ]
 
-# Layout constants
+# 布局常量
 WIDTH = 860
 PAD = 30
-CONTENT_W = WIDTH - 2 * PAD  # 800
+CONTENT_W = WIDTH - 2 * PAD  # 内容区宽度 800
 CARD_RX = 8
 
-# Font stacks
-# Use single quotes inside — SVG attributes are double-quoted
+# 字体栈
+# SVG 属性使用双引号，内部字体名使用单引号以避免 XML 解析冲突
 FONT_SANS = ("-apple-system, BlinkMacSystemFont, 'Segoe UI', "
              "Helvetica, Arial, sans-serif")
 FONT_MONO = ("'SF Mono', 'Fira Code', 'Fira Mono', "
              "'Roboto Mono', 'Courier New', monospace")
 
 # ---------------------------------------------------------------------------
-# i18n strings — add new languages here
+# 国际化 — 需要新增语言时在此处追加
 # ---------------------------------------------------------------------------
 
 I18N = {
     "zh": {
         "title": "本科在读",
         "school": "中山大学网络空间安全学院",
-        "motto": 'Come on pick up the pace!',
+        "motto": 'Come up pick up the pace!',
         "sect_research": "研究方向",
         "sect_tech_stack": "技术栈",
         "sect_contrib": "年度贡献",
@@ -79,15 +78,15 @@ I18N = {
         "sect_activity": "近期动态",
         "total_label": "合计",
         "updated": "更新于",
-        "stat_stars": "Star",
+        "stat_stars": "已加星标",
         "stat_followers": "关注者",
         "stat_repos": "仓库",
         "stat_contribs": "贡献",
         "research_tags": [
             ("具身智能安全", "#1a2a3a", ACCENT_BLUE),
             ("威胁情报", "#1a2a1a", ACCENT_GREEN),
-            ("渗透测试 & CTF", "#2a1a1a", ACCENT_ORANGE),
-            ("人工智能", "#1a1a2a", ACCENT_PURPLE),
+            ("CTF", "#2a1a1a", ACCENT_ORANGE),
+            ("人工智能安全", "#1a1a2a", ACCENT_PURPLE),
         ],
         "tech_stack": [
             ("Python", "#3572A5"),
@@ -115,7 +114,7 @@ I18N = {
         "title": "UGRD",
         "school": "School of Cyber Science and Technology, Sun Yat-sen University",
         "motto": '"Come on pick up the pace!"',
-        "sect_research": "Focusing",
+        "sect_research": "Research",
         "sect_tech_stack": "Tech Stack",
         "sect_contrib": "Contributions (Last Year)",
         "sect_languages": "Languages",
@@ -158,7 +157,7 @@ I18N = {
 
 
 # ---------------------------------------------------------------------------
-# GitHub API helpers
+# GitHub API 请求封装
 # ---------------------------------------------------------------------------
 
 def _token():
@@ -177,8 +176,20 @@ def _headers(use_graphql=False):
     return h
 
 
+def _local_avatar_data_uri(path="avatar.png"):
+    """读取本地头像文件，返回 base64 data URI。文件不存在则返回空字符串。"""
+    if os.path.exists(path):
+        with open(path, "rb") as f:
+            raw = f.read()
+        ext = os.path.splitext(path)[1].lower().lstrip(".")
+        mime = {"png": "image/png", "jpg": "image/jpeg", "jpeg": "image/jpeg",
+                "gif": "image/gif", "webp": "image/webp"}.get(ext, "image/png")
+        return f"data:{mime};base64,{base64.b64encode(raw).decode()}"
+    return ""
+
+
 def api_rest(path):
-    """GET a REST endpoint, return parsed JSON."""
+    """调用 GitHub REST API (GET)，返回解析后的 JSON。失败重试 3 次。"""
     url = f"https://api.github.com/{path}"
     req = Request(url, headers=_headers())
     for attempt in range(3):
@@ -198,7 +209,7 @@ def api_rest(path):
 
 
 def api_graphql(query):
-    """POST a GraphQL query, return parsed JSON."""
+    """调用 GitHub GraphQL API (POST)，返回解析后的 JSON。失败重试 3 次。"""
     url = "https://api.github.com/graphql"
     data = json.dumps({"query": query}).encode()
     req = Request(url, data=data, headers=_headers(use_graphql=True), method="POST")
@@ -219,26 +230,37 @@ def api_graphql(query):
 
 
 # ---------------------------------------------------------------------------
-# Data fetching
+# 数据获取
 # ---------------------------------------------------------------------------
 
 def fetch_all():
-    """Fetch all needed data from GitHub and return a consolidated dict."""
+    """从 GitHub 获取全部所需数据，整合为一个 dict 返回。
 
-    # -- REST: user profile + avatar
+    REST API（无需认证的基础数据）:
+        - 用户基本信息（头像、昵称等）
+        - 近期公开事件
+        - 仓库列表
+
+    GraphQL API（需 GITHUB_TOKEN）:
+        - 年度贡献日历
+        - 统计数字（Star、Followers、Repos、PR、Issue）
+        - 各仓库语言字节数
+    """
+
+    # REST: 用户基本信息 + 头像
     user = api_rest(f"users/{USERNAME}")
 
-    # -- REST: public events (recent activity)
+    # REST: 近期公开事件
     events = api_rest(f"users/{USERNAME}/events/public?per_page=8")
     if not isinstance(events, list):
         events = []
 
-    # -- REST: repos for language stats
+    # REST: 仓库列表（用于语言统计的 fallback）
     repos = api_rest(f"users/{USERNAME}/repos?per_page=100&sort=pushed")
     if not isinstance(repos, list):
         repos = []
 
-    # -- GraphQL: contribution calendar + aggregate stats + language bytes
+    # GraphQL: 贡献日历 + 统计数字 + 语言字节数
     gql_query = """
     query {
       user(login: "%s") {
@@ -275,7 +297,7 @@ def fetch_all():
     gql = api_graphql(gql_query)
     gql_user = (gql.get("data") or {}).get("user") or {}
 
-    # -- Build result
+    # 组装返回
     result = {
         "user": user,
         "events": events,
@@ -287,7 +309,7 @@ def fetch_all():
 
 
 # ---------------------------------------------------------------------------
-# Data extraction helpers
+# 数据提取工具函数
 # ---------------------------------------------------------------------------
 
 def extract_stats(data):
@@ -311,7 +333,7 @@ def extract_stats(data):
 
 
 def extract_languages(gql_user):
-    """Aggregate language bytes across repos from GraphQL data."""
+    """从 GraphQL 数据中汇总各仓库的语言字节数，计算占比并排序。返回前 5 名。"""
     lang_bytes = {}
     total_bytes = 0
 
@@ -326,7 +348,7 @@ def extract_languages(gql_user):
                 lang_bytes[name] = lang_bytes.get(name, 0) + size
                 total_bytes += size
 
-    # Standard language colours (GitHub linguist)
+    # GitHub 官方语言配色 (linguist)，作为识别的补充
     lang_colors = {
         "Python": "#3572A5",
         "C": "#555555",
@@ -413,6 +435,7 @@ def extract_events(events, lang="zh"):
 
 
 def _relative_time(dt, lang="zh"):
+    """将 UTC 时间转换为相对时间字符串，中文显示"X 小时前"，英文显示"Xh ago"。"""
     now = datetime.now(timezone.utc)
     diff = now - dt
     mins = int(diff.total_seconds() / 60)
@@ -439,11 +462,12 @@ def _relative_time(dt, lang="zh"):
 
 
 # ---------------------------------------------------------------------------
-# SVG generation
+# SVG 生成
 # ---------------------------------------------------------------------------
 
 def _text(x, y, content, size=13, color=TEXT_PRIMARY, bold=False, anchor="start",
           font=FONT_SANS, opacity=1.0, extra=""):
+    """生成 <text> 元素，内容自动做 XML 转义。"""
     fw = 'font-weight="bold" ' if bold else ""
     return (f'<text x="{x}" y="{y}" font-family="{font}" '
             f'font-size="{size}" fill="{color}" text-anchor="{anchor}" '
@@ -451,17 +475,19 @@ def _text(x, y, content, size=13, color=TEXT_PRIMARY, bold=False, anchor="start"
 
 
 def _esc(s):
+    """XML 特殊字符转义。"""
     return str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
 def _rect(x, y, w, h, rx=CARD_RX, fill=CARD_BG, stroke=None, opacity=1.0):
+    """生成 <rect> 元素，支持圆角和可选描边。"""
     s = f' stroke="{stroke}" stroke-width="1"' if stroke else ""
     return (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" '
             f'rx="{rx}" fill="{fill}"{s} opacity="{opacity}"/>')
 
 
 def _section_label(x, y, text, accent=ACCENT_BLUE):
-    """Renders a section header with a coloured left accent bar."""
+    """渲染章节标题：左侧强调色条 + 加粗文字。"""
     parts = []
     parts.append(f'<rect x="{x}" y="{y - 12}" width="3" height="16" '
                  f'rx="2" fill="{accent}"/>')
@@ -470,8 +496,8 @@ def _section_label(x, y, text, accent=ACCENT_BLUE):
 
 
 def _badge(x, y, text, bg="#1a2a3a", fg=ACCENT_BLUE):
-    """Renders a rounded pill badge. Returns the width used so callers can chain."""
-    # Approximate text width (7px per char for 12px font)
+    """渲染圆角标签。返回 (占用宽度, SVG 片段)，便于调用方排列。"""
+    # 文本宽度粗略估算：12px 字号中文约 12px/字，英文约 7px/字，这里取保守估计
     tw = len(text) * 7 + 20
     parts = []
     parts.append(f'<rect x="{x}" y="{y}" width="{tw}" height="24" '
@@ -496,14 +522,14 @@ def build_svg(data, lang="zh"):
     languages = extract_languages(data["gql"])
     activities = extract_events(data["events"], lang)
 
-    # Header info
+    # 头部信息
     user = data["user"]
     display_name = user.get("name") or user.get("login") or USERNAME
     avatar_url = user.get("avatar_url", "")
 
     parts = []
 
-    # -- SVG wrapper + defs
+    # SVG 外壳 + defs（渐变、滤镜、裁剪路径等）
     parts.append(f'''<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      width="{WIDTH}" height="620" viewBox="0 0 {WIDTH} 620">
@@ -521,20 +547,21 @@ def build_svg(data, lang="zh"):
   </filter>
 </defs>
 
-<!-- Background -->
+<!-- 背景 -->
 <rect width="{WIDTH}" height="620" rx="12" fill="{BG}"/>
 
-<!-- Subtle top accent line -->
+<!-- 顶部强调线 -->
 <rect x="0" y="0" width="{WIDTH}" height="2" rx="1" fill="{ACCENT_BLUE}" opacity="0.6"/>
 ''')
 
-    # -- Header section
-    # Avatar placeholder / image
-    if avatar_url:
-        parts.append(f'''<!-- Avatar -->
+    # --- 头部区域 ---
+    # 头像：优先使用本地文件（base64 嵌入，无需网络），其次远程 URL，最后首字母占位
+    avatar_src = _local_avatar_data_uri() or avatar_url
+    if avatar_src:
+        parts.append(f'''<!-- 头像 -->
 <circle cx="72" cy="72" r="43" fill="{BORDER}"/>
 <image x="30" y="30" width="84" height="84" clip-path="url(#avatarClip)"
-       xlink:href="{_esc(avatar_url)}" preserveAspectRatio="xMidYMid slice"/>
+       xlink:href="{_esc(avatar_src)}" preserveAspectRatio="xMidYMid slice"/>
 ''')
     else:
         parts.append(f'''<circle cx="72" cy="72" r="42" fill="{BORDER}"/>
@@ -542,19 +569,19 @@ def build_svg(data, lang="zh"):
       font-size="28" fill="{TEXT_SECONDARY}">R</text>
 ''')
 
-    # Name
+    # 用户名
     parts.append(_text(132, 58, display_name, size=22, bold=True))
-    # Title
+    # 头衔
     parts.append(_text(132, 84, T["title"], size=14, color=TEXT_SECONDARY))
-    # Motto
+    # 座右铭
     parts.append(_text(132, 108, T["motto"], size=12, color=TEXT_DIM,
                        extra='font-style="italic"'))
-    # School
+    # 学校
     school_icon = "\U0001f393" if lang == "zh" else "\U0001f393"
     parts.append(_text(132, 130, f"{school_icon}  {T['school']}", size=12,
                        color=TEXT_SECONDARY))
 
-    # -- Stats cards (right side)
+    # --- 统计卡片（右侧） ---
     card_w, card_h = 86, 56
     card_y = 42
     cards_data = [
@@ -565,31 +592,31 @@ def build_svg(data, lang="zh"):
     ]
     for i, (val, lbl) in enumerate(cards_data):
         cx = WIDTH - PAD - (4 - i) * (card_w + 10)
-        # Format large numbers
+        # 大数值缩写
         if val >= 1000:
             disp = f"{val / 1000:.1f}k"
         else:
             disp = str(val)
         parts.append(_stat_card(cx, card_y, card_w, card_h, lbl, disp))
 
-    # -- Divider
+    # --- 分隔线 ---
     parts.append(f'<line x1="{PAD}" y1="150" x2="{WIDTH - PAD}" y2="150" '
                  f'stroke="{BORDER}" stroke-width="1"/>')
 
-    # -- Two-column section: Research (left) | Tech Stack (right)
+    # --- 双栏区域：研究方向（左）| 技术栈（右） ---
     col1_x = PAD
     col2_x = PAD + CONTENT_W // 2 + 20
     sec_y = 175
 
-    # Research interests
+    # 研究方向
     parts.append(_section_label(col1_x, sec_y, T["sect_research"]))
     badges_y = sec_y + 20
     bx = col1_x
     by = badges_y
-    # Max x before we bleed into the right column
+    # 右边界：超出此位置则换行，防止侵入右侧"技术栈"区域
     badge_limit = col2_x - 16
     for tag, bg_c, fg_c in T["research_tags"]:
-        # Estimate width, wrap _before_ rendering if it won't fit
+        # 先估算标签宽度，放不下则提前换行（修复溢出 bug）
         est_w = len(tag) * 7 + 20 + 8
         if bx > col1_x and bx + est_w > badge_limit:
             bx = col1_x
@@ -598,13 +625,13 @@ def build_svg(data, lang="zh"):
         parts.append(svg)
         bx += w_used
 
-    # Tech Stack (right column)
+    # 技术栈（右列）
     parts.append(_section_label(col2_x, sec_y, T["sect_tech_stack"], accent=ACCENT_GREEN))
     tech_y = sec_y + 20
     tx = col2_x
     ty = tech_y
     for tname, tcolor in T["tech_stack"]:
-        # Colored dot
+        # 彩色圆点 + 文字
         parts.append(f'<circle cx="{tx + 8}" cy="{ty + 8}" r="5" fill="{tcolor}"/>')
         parts.append(_text(tx + 20, ty + 13, tname, size=13))
         tx += len(tname) * 8 + 40
@@ -612,16 +639,16 @@ def build_svg(data, lang="zh"):
             tx = col2_x
             ty += 28
 
-    # -- Divider
+    # --- 分隔线 ---
     div2_y = max(badges_y + 50, tech_y + 30)
     parts.append(f'<line x1="{PAD}" y1="{div2_y}" x2="{WIDTH - PAD}" y2="{div2_y}" '
                  f'stroke="{BORDER}" stroke-width="1"/>')
 
-    # -- Contribution heatmap
+    # --- 年度贡献热力图 ---
     heat_y = div2_y + 25
     parts.append(_section_label(PAD, heat_y, T["sect_contrib"],
                                 accent=ACCENT_GREEN))
-    # Total label
+    # 总贡献数
     total_text = f"{T['total_label']}: {stats['contributions']:,}"
     parts.append(_text(WIDTH - PAD, heat_y + 1, total_text,
                        size=12, color=TEXT_SECONDARY, anchor="end"))
@@ -629,11 +656,11 @@ def build_svg(data, lang="zh"):
     weeks = stats["weeks"]
     heatmap_x = PAD
     heatmap_y = heat_y + 24
-    cell_s = 10
-    gap = 3
+    cell_s = 10   # 格子尺寸
+    gap = 3       # 间距
     step = cell_s + gap
 
-    # Day labels — use Chinese abbreviations when lang=zh
+    # 左侧星期标注
     if lang == "zh":
         day_labels = [("一", 1), ("三", 3), ("五", 5)]
     else:
@@ -642,13 +669,13 @@ def build_svg(data, lang="zh"):
         parts.append(_text(heatmap_x - 8, heatmap_y + row * step + cell_s - 2,
                            lbl, size=9, color=TEXT_DIM, anchor="end"))
 
-    # Month labels on top
+    # 顶部月份标注
     if lang == "zh":
         months = [f"{i}月" for i in range(1, 13)]
     else:
         months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    month_positions = {}  # week_index -> month_abbr
+    month_positions = {}
 
     if weeks:
         for wi, week in enumerate(weeks):
@@ -660,7 +687,7 @@ def build_svg(data, lang="zh"):
                 try:
                     dt = datetime.strptime(first_day, "%Y-%m-%d")
                     m_abbr = months[dt.month - 1]
-                    # Only record first occurrence of each month
+                    # 每月只标注首次出现的位置
                     if m_abbr not in month_positions.values():
                         month_positions[wi] = m_abbr
                 except (ValueError, IndexError):
@@ -671,7 +698,7 @@ def build_svg(data, lang="zh"):
         parts.append(_text(mx, heatmap_y - 6, m_abbr, size=9, color=TEXT_DIM,
                            anchor="middle"))
 
-    # Heatmap cells
+    # 热力图格子
     if weeks:
         for wi, week in enumerate(weeks):
             days = week.get("contributionDays", [])
@@ -693,7 +720,7 @@ def build_svg(data, lang="zh"):
                 parts.append(f'<rect x="{cx}" y="{cy}" width="{cell_s}" '
                              f'height="{cell_s}" rx="2" fill="{c}"/>')
     else:
-        # Empty placeholder grid
+        # 无数据时生成空占位网格
         for wi in range(52):
             for di in range(7):
                 cx = heatmap_x + wi * step
@@ -706,7 +733,7 @@ def build_svg(data, lang="zh"):
 
     heat_bottom = heatmap_y + 7 * step + 10
 
-    # -- Language distribution
+    # --- 编程语言分布 ---
     lang_y = heat_bottom + 20
     parts.append(_section_label(PAD, lang_y, T["sect_languages"], accent=ACCENT_ORANGE))
     lang_y += 24
@@ -723,14 +750,14 @@ def build_svg(data, lang="zh"):
 
             parts.append(_text(bar_x, by_ + 10, lang["name"], size=12,
                                color=TEXT_SECONDARY, anchor="end"))
-            # Bar background
+            # 进度条背景
             parts.append(f'<rect x="{bar_x + 8}" y="{by_}" width="{bar_area_w}" '
                          f'height="{bar_h}" rx="6" fill="{CARD_BG}" stroke="{BORDER}" '
                          f'stroke-width="1"/>')
-            # Bar fill
+            # 进度条填充
             parts.append(f'<rect x="{bar_x + 8}" y="{by_}" width="{bar_w}" '
                          f'height="{bar_h}" rx="6" fill="{color}"/>')
-            # Percentage
+            # 百分比文字
             parts.append(_text(bar_x + bar_area_w + 16, by_ + 10,
                                f"{pct}%", size=12, color=TEXT_SECONDARY))
 
@@ -740,7 +767,7 @@ def build_svg(data, lang="zh"):
         parts.append(_text(PAD + 8, lang_y, T["fallback_langs"], size=12,
                            color=TEXT_DIM))
 
-    # -- Recent Activity
+    # --- 近期动态 ---
     act_y = lang_bottom + 16
     parts.append(_section_label(PAD, act_y, T["sect_activity"], accent=ACCENT_CYAN))
     act_y += 22
@@ -761,12 +788,12 @@ def build_svg(data, lang="zh"):
         parts.append(_text(PAD + 2, act_y, T["fallback_activity"], size=12,
                            color=TEXT_DIM))
 
-    # -- Footer
+    # --- 页脚 ---
     foot_y = max(act_bottom + 10, 590)
     parts.append(f'<line x1="{PAD}" y1="{foot_y - 5}" x2="{WIDTH - PAD}" '
                  f'y2="{foot_y - 5}" stroke="{BORDER}" stroke-width="1"/>')
 
-    # Social links
+    # 社交链接
     links = [
         ("\U0001f310", "RenAhsAcme.github.io", "https://RenAhsAcme.github.io"),
         ("\U0001f40d", "github.com/RenAhsAcme", "https://github.com/RenAhsAcme"),
@@ -781,14 +808,13 @@ def build_svg(data, lang="zh"):
                        f"{T['updated']} {data['generated_at']}",
                        size=10, color=TEXT_DIM, anchor="end"))
 
-    # Dynamic SVG height — use actual bottom
+    # 根据实际内容动态计算 SVG 高度，替换初始占位值
     total_h = foot_y + 36
 
-    # Close SVG (note: we need to patch the height at the top)
     parts.append("</svg>")
 
     svg = "\n".join(parts)
-    # Replace placeholder height with actual calculated height
+    # 将初始的 height="620" 替换为实际高度
     svg = svg.replace('height="620"', f'height="{total_h}"')
     svg = svg.replace('viewBox="0 0 860 620"', f'viewBox="0 0 860 {total_h}"')
     svg = svg.replace(f'<rect width="860" height="620" rx="12" fill="{BG}"/>',
@@ -798,14 +824,14 @@ def build_svg(data, lang="zh"):
 
 
 # ---------------------------------------------------------------------------
-# Main
+# 入口
 # ---------------------------------------------------------------------------
 
 def main():
     global OUTPUT
-    # Simple arg parsing
+    # 简易命令行参数解析
     args = sys.argv[1:]
-    langs_to_build = []  # empty means "all"
+    langs_to_build = []  # 空列表 = 生成全部语言
     i = 0
     while i < len(args):
         if args[i] in ("--output", "-o") and i + 1 < len(args):
@@ -823,33 +849,33 @@ def main():
     if not langs_to_build:
         langs_to_build = ["zh", "en"]
 
-    # Try to load avatar from local file as fallback
+    # 如果存在本地头像文件，用作 API 不可用时的后备
     local_avatar = "avatar.png"
     _fallback_avatar = local_avatar if os.path.exists(local_avatar) else ""
 
-    print(f"[*] Fetching data for {USERNAME} ...")
+    print(f"[*] 正在获取 {USERNAME} 的 GitHub 数据 ...")
     try:
         data = fetch_all()
     except Exception as exc:
-        print(f"[!] API fetch failed: {exc}")
-        print("[*] Generating with fallback data ...")
+        print(f"[!] API 请求失败: {exc}")
+        print("[*] 使用后备数据生成 ...")
         data = _fallback_data(_fallback_avatar)
 
     for lang in langs_to_build:
         suffix = "" if lang == "zh" else f"_{lang}"
         out_name = OUTPUT.replace(".svg", f"{suffix}.svg")
-        print(f"[*] Generating {lang} SVG ...")
+        print(f"[*] 正在生成 {lang} 版本 ...")
         svg = build_svg(data, lang=lang)
 
         with open(out_name, "w", encoding="utf-8") as f:
             f.write(svg)
 
         size_kb = os.path.getsize(out_name) / 1024
-        print(f"[+] Written {out_name} ({size_kb:.1f} KB)")
+        print(f"[+] 已写入 {out_name} ({size_kb:.1f} KB)")
 
 
 def _fallback_data(avatar_url=""):
-    """Return minimal fallback data when the GitHub API is unreachable."""
+    """当 GitHub API 不可用时，返回最小后备数据集，确保 SVG 仍能渲染。"""
     return {
         "user": {
             "name": "RenAhsAcme",
