@@ -26,35 +26,35 @@
 <image x="30" y="30" width="84" height="84" clip-path="url(#avatarClip)"
        xlink:href="https://avatars.githubusercontent.com/u/130288076" preserveAspectRatio="xMidYMid slice"/>
 
-<text x="132" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" fill="#e6edf3" text-anchor="start" font-weight="bold" opacity="1.0" >刃律RenAhsAcme</text>
-<text x="132" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#8b949e" text-anchor="start" opacity="1.0" >本科在读</text>
+<text x="132" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" fill="#e6edf3" text-anchor="start" font-weight="bold" opacity="1.0" >RenAhsAcme</text>
+<text x="132" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#8b949e" text-anchor="start" opacity="1.0" >UGRD</text>
 <text x="132" y="108" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#6e7681" text-anchor="start" opacity="1.0" font-style="italic">Come on pick up the pace!</text>
-<text x="132" y="130" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >中山大学网络空间安全学院</text>
+<text x="132" y="130" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >School of Cyber Science and Technology, Sun Yat-sen University</text>
 <rect x="446" y="42" width="86" height="56" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1" opacity="1.0"/>
 <text x="489.0" y="64" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" fill="#e6edf3" text-anchor="middle" font-weight="bold" opacity="1.0" >0</text>
-<text x="489.0" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e" text-anchor="middle" opacity="1.0" >获得星标</text>
+<text x="489.0" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e" text-anchor="middle" opacity="1.0" >Stars</text>
 <rect x="542" y="42" width="86" height="56" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1" opacity="1.0"/>
 <text x="585.0" y="64" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" fill="#e6edf3" text-anchor="middle" font-weight="bold" opacity="1.0" >0</text>
-<text x="585.0" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e" text-anchor="middle" opacity="1.0" >关注者</text>
+<text x="585.0" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e" text-anchor="middle" opacity="1.0" >Followers</text>
 <rect x="638" y="42" width="86" height="56" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1" opacity="1.0"/>
 <text x="681.0" y="64" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" fill="#e6edf3" text-anchor="middle" font-weight="bold" opacity="1.0" >0</text>
-<text x="681.0" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e" text-anchor="middle" opacity="1.0" >仓库</text>
+<text x="681.0" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e" text-anchor="middle" opacity="1.0" >Repos</text>
 <rect x="734" y="42" width="86" height="56" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1" opacity="1.0"/>
 <text x="777.0" y="64" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" fill="#e6edf3" text-anchor="middle" font-weight="bold" opacity="1.0" >0</text>
-<text x="777.0" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e" text-anchor="middle" opacity="1.0" >贡献</text>
+<text x="777.0" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e" text-anchor="middle" opacity="1.0" >Contribs</text>
 <line x1="30" y1="150" x2="830" y2="150" stroke="#30363d" stroke-width="1"/>
 <rect x="30" y="163" width="3" height="16" rx="2" fill="#58a6ff"/>
-<text x="42" y="176" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" font-weight="bold" opacity="1.0" >关注方向</text>
-<rect x="30" y="195" width="62" height="24" rx="12" fill="#1a2a3a"/>
-<text x="61.0" y="211" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#58a6ff" text-anchor="middle" opacity="1.0" >具身智能安全</text>
-<rect x="100" y="195" width="48" height="24" rx="12" fill="#1a2a1a"/>
-<text x="124.0" y="211" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#3fb950" text-anchor="middle" opacity="1.0" >威胁情报</text>
-<rect x="156" y="195" width="90" height="24" rx="12" fill="#2a1a1a"/>
-<text x="201.0" y="211" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#d2991d" text-anchor="middle" opacity="1.0" >渗透测试 &amp; CTF</text>
-<rect x="254" y="195" width="48" height="24" rx="12" fill="#1a1a2a"/>
-<text x="278.0" y="211" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#a371f7" text-anchor="middle" opacity="1.0" >人工智能安全</text>
+<text x="42" y="176" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" font-weight="bold" opacity="1.0" >Research</text>
+<rect x="30" y="195" width="160" height="24" rx="12" fill="#1a2a3a"/>
+<text x="110.0" y="211" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#58a6ff" text-anchor="middle" opacity="1.0" >Embodied AI Security</text>
+<rect x="198" y="195" width="153" height="24" rx="12" fill="#1a2a1a"/>
+<text x="274.5" y="211" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#3fb950" text-anchor="middle" opacity="1.0" >Threat Intelligence</text>
+<rect x="30" y="227" width="132" height="24" rx="12" fill="#2a1a1a"/>
+<text x="96.0" y="243" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#d2991d" text-anchor="middle" opacity="1.0" >Pentesting &amp; CTF</text>
+<rect x="170" y="227" width="181" height="24" rx="12" fill="#1a1a2a"/>
+<text x="260.5" y="243" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#a371f7" text-anchor="middle" opacity="1.0" >Artificial Intelligence</text>
 <rect x="450" y="163" width="3" height="16" rx="2" fill="#3fb950"/>
-<text x="462" y="176" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" font-weight="bold" opacity="1.0" >技术栈</text>
+<text x="462" y="176" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" font-weight="bold" opacity="1.0" >Tech Stack</text>
 <circle cx="458" cy="203" r="5" fill="#3572A5"/>
 <text x="470" y="208" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#e6edf3" text-anchor="start" opacity="1.0" >Python</text>
 <circle cx="546" cy="203" r="5" fill="#f34b7d"/>
@@ -63,11 +63,11 @@
 <text x="654" y="208" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#e6edf3" text-anchor="start" opacity="1.0" >Rust</text>
 <line x1="30" y1="245" x2="830" y2="245" stroke="#30363d" stroke-width="1"/>
 <rect x="30" y="258" width="3" height="16" rx="2" fill="#3fb950"/>
-<text x="42" y="271" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" font-weight="bold" opacity="1.0" >年度贡献</text>
-<text x="830" y="271" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="end" opacity="1.0" >合计: 0</text>
-<text x="22" y="315" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#6e7681" text-anchor="end" opacity="1.0" >一</text>
-<text x="22" y="341" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#6e7681" text-anchor="end" opacity="1.0" >三</text>
-<text x="22" y="367" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#6e7681" text-anchor="end" opacity="1.0" >五</text>
+<text x="42" y="271" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" font-weight="bold" opacity="1.0" >Contributions (Last Year)</text>
+<text x="830" y="271" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="end" opacity="1.0" >Total: 0</text>
+<text x="22" y="315" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#6e7681" text-anchor="end" opacity="1.0" >Mon</text>
+<text x="22" y="341" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#6e7681" text-anchor="end" opacity="1.0" >Wed</text>
+<text x="22" y="367" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="9" fill="#6e7681" text-anchor="end" opacity="1.0" >Fri</text>
 <rect x="30" y="294" width="10" height="10" rx="2" fill="#161b22"/>
 <rect x="30" y="307" width="10" height="10" rx="2" fill="#161b22"/>
 <rect x="30" y="320" width="10" height="10" rx="2" fill="#161b22"/>
@@ -432,29 +432,29 @@
 <rect x="693" y="346" width="10" height="10" rx="2" fill="#161b22"/>
 <rect x="693" y="359" width="10" height="10" rx="2" fill="#161b22"/>
 <rect x="693" y="372" width="10" height="10" rx="2" fill="#161b22"/>
-<text x="368.0" y="343.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="middle" opacity="1.0" >贡献数据将在首次 Action 运行后加载</text>
+<text x="368.0" y="343.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="middle" opacity="1.0" >Contribution data loads after first Action run</text>
 <rect x="30" y="403" width="3" height="16" rx="2" fill="#d2991d"/>
-<text x="42" y="416" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" font-weight="bold" opacity="1.0" >编程语言</text>
-<text x="38" y="439" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#6e7681" text-anchor="start" opacity="1.0" >暂无公开仓库</text>
+<text x="42" y="416" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" font-weight="bold" opacity="1.0" >Languages</text>
+<text x="38" y="439" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#6e7681" text-anchor="start" opacity="1.0" >No public repos yet</text>
 <rect x="30" y="463" width="3" height="16" rx="2" fill="#39d2c0"/>
-<text x="42" y="476" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" font-weight="bold" opacity="1.0" >近期动态</text>
+<text x="42" y="476" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" font-weight="bold" opacity="1.0" >Recent Activity</text>
 <text x="32" y="498" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" opacity="1.0" >🔀</text>
-<text x="58" y="498" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >在…发起了 PR sysu/better-thesis</text>
-<text x="830" y="498" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >7 分钟前</text>
+<text x="58" y="498" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >opened PR in sysu/better-thesis</text>
+<text x="830" y="498" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >7m ago</text>
 <text x="32" y="522" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" opacity="1.0" >📦</text>
-<text x="58" y="522" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >推送至 RenAhsAcme/RenAhsAcme</text>
-<text x="830" y="522" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >20 分钟前</text>
+<text x="58" y="522" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >pushed to RenAhsAcme/RenAhsAcme</text>
+<text x="830" y="522" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >20m ago</text>
 <text x="32" y="546" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" opacity="1.0" >📦</text>
-<text x="58" y="546" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >推送至 RenAhsAcme/RenAhsAcme</text>
-<text x="830" y="546" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >21 分钟前</text>
+<text x="58" y="546" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >pushed to RenAhsAcme/RenAhsAcme</text>
+<text x="830" y="546" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >21m ago</text>
 <text x="32" y="570" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" opacity="1.0" >⭐</text>
-<text x="58" y="570" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >星标了 ruvnet/RuView</text>
-<text x="830" y="570" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >29 分钟前</text>
+<text x="58" y="570" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >starred ruvnet/RuView</text>
+<text x="830" y="570" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >29m ago</text>
 <text x="32" y="594" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" opacity="1.0" >🔀</text>
-<text x="58" y="594" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >在…发起了 PR sysu/better-thesis</text>
-<text x="830" y="594" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >1 小时前</text>
+<text x="58" y="594" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >opened PR in sysu/better-thesis</text>
+<text x="830" y="594" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >1h ago</text>
 <line x1="30" y1="630" x2="830" y2="630" stroke="#30363d" stroke-width="1"/>
 <text x="30" y="651" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >🌐  RenAhsAcme.github.io</text>
 <text x="230" y="651" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >🐍  github.com/RenAhsAcme</text>
-<text x="830" y="651" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#6e7681" text-anchor="end" opacity="1.0" >更新于 2026-05-11 03:35 UTC</text>
+<text x="830" y="651" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#6e7681" text-anchor="end" opacity="1.0" >updated 2026-05-11 03:35 UTC</text>
 </svg>
