@@ -33,11 +33,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          if git diff --quiet profile.svg; then
+          git add profile.svg profile_en.svg
+          if git diff --cached --quiet; then
             echo "No changes — skipping commit."
           else
-            git add profile.svg
-            git commit -m "chore: update profile SVG [skip ci]"
+            git commit -m "chore: update profile SVGs [skip ci]"
             git push
-            echo "Pushed updated profile.svg."
+            echo "Pushed updated SVGs."
           fi

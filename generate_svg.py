@@ -63,6 +63,99 @@ FONT_SANS = ("-apple-system, BlinkMacSystemFont, 'Segoe UI', "
 FONT_MONO = ("'SF Mono', 'Fira Code', 'Fira Mono', "
              "'Roboto Mono', 'Courier New', monospace")
 
+# ---------------------------------------------------------------------------
+# i18n strings — add new languages here
+# ---------------------------------------------------------------------------
+
+I18N = {
+    "zh": {
+        "title": "本科在读",
+        "school": "中山大学网络空间安全学院",
+        "motto": 'Come on pick up the pace!',
+        "sect_research": "研究方向",
+        "sect_tech_stack": "技术栈",
+        "sect_contrib": "年度贡献",
+        "sect_languages": "编程语言",
+        "sect_activity": "近期动态",
+        "total_label": "合计",
+        "updated": "更新于",
+        "stat_stars": "Star",
+        "stat_followers": "关注者",
+        "stat_repos": "仓库",
+        "stat_contribs": "贡献",
+        "research_tags": [
+            ("具身智能安全", "#1a2a3a", ACCENT_BLUE),
+            ("威胁情报", "#1a2a1a", ACCENT_GREEN),
+            ("渗透测试 & CTF", "#2a1a1a", ACCENT_ORANGE),
+            ("人工智能", "#1a1a2a", ACCENT_PURPLE),
+        ],
+        "tech_stack": [
+            ("Python", "#3572A5"),
+            ("C / C++", "#f34b7d"),
+            ("Rust", "#dea584"),
+        ],
+        "activity_verbs": {
+            "WatchEvent": "星标了",
+            "PushEvent": "推送至",
+            "PullRequestEvent": "在…发起了 PR",
+            "IssuesEvent": "在…提交了 Issue",
+            "ForkEvent": "复刻了",
+            "CreateEvent": "创建了",
+            "DeleteEvent": "删除了",
+            "PullRequestReviewEvent": "在…审查了 PR",
+            "IssueCommentEvent": "在…发表了评论",
+            "ReleaseEvent": "发布了",
+            "PublicEvent": "公开了",
+        },
+        "fallback_contrib": "贡献数据将在首次 Action 运行后加载",
+        "fallback_langs": "暂无公开仓库",
+        "fallback_activity": "暂无近期公开动态",
+    },
+    "en": {
+        "title": "UGRD",
+        "school": "School of Cyber Science and Technology, Sun Yat-sen University",
+        "motto": '"Come on pick up the pace!"',
+        "sect_research": "Focusing",
+        "sect_tech_stack": "Tech Stack",
+        "sect_contrib": "Contributions (Last Year)",
+        "sect_languages": "Languages",
+        "sect_activity": "Recent Activity",
+        "total_label": "Total",
+        "updated": "updated",
+        "stat_stars": "Stars",
+        "stat_followers": "Followers",
+        "stat_repos": "Repos",
+        "stat_contribs": "Contribs",
+        "research_tags": [
+            ("Embodied AI Security", "#1a2a3a", ACCENT_BLUE),
+            ("Threat Intelligence", "#1a2a1a", ACCENT_GREEN),
+            ("Pentesting & CTF", "#2a1a1a", ACCENT_ORANGE),
+            ("Artificial Intelligence", "#1a1a2a", ACCENT_PURPLE),
+        ],
+        "tech_stack": [
+            ("Python", "#3572A5"),
+            ("C / C++", "#f34b7d"),
+            ("Rust", "#dea584"),
+        ],
+        "activity_verbs": {
+            "WatchEvent": "starred",
+            "PushEvent": "pushed to",
+            "PullRequestEvent": "opened PR in",
+            "IssuesEvent": "opened issue in",
+            "ForkEvent": "forked",
+            "CreateEvent": "created",
+            "DeleteEvent": "deleted",
+            "PullRequestReviewEvent": "reviewed PR in",
+            "IssueCommentEvent": "commented on",
+            "ReleaseEvent": "released",
+            "PublicEvent": "made public",
+        },
+        "fallback_contrib": "Contribution data loads after first Action run",
+        "fallback_langs": "No public repos yet",
+        "fallback_activity": "No recent public activity",
+    },
+}
+
 
 # ---------------------------------------------------------------------------
 # GitHub API helpers
@@ -277,32 +370,35 @@ def extract_languages(gql_user):
     return result
 
 
-def extract_events(events):
+def extract_events(events, lang="zh"):
+    T = I18N.get(lang, I18N["en"])
     icons = {
-        "WatchEvent": ("⭐", "starred"),
-        "PushEvent": ("\U0001f4e6", "pushed to"),
-        "PullRequestEvent": ("\U0001f500", "opened PR in"),
-        "IssuesEvent": ("\U0001f41b", "opened issue in"),
-        "ForkEvent": ("\U0001f4cd", "forked"),
-        "CreateEvent": ("➕", "created"),
-        "DeleteEvent": ("❌", "deleted"),
-        "PullRequestReviewEvent": ("\U0001f44d", "reviewed PR in"),
-        "IssueCommentEvent": ("\U0001f4ac", "commented on"),
-        "ReleaseEvent": ("\U0001f680", "released"),
-        "PublicEvent": ("\U0001f513", "made public"),
+        "WatchEvent": "⭐",
+        "PushEvent": "\U0001f4e6",
+        "PullRequestEvent": "\U0001f500",
+        "IssuesEvent": "\U0001f41b",
+        "ForkEvent": "\U0001f4cd",
+        "CreateEvent": "➕",
+        "DeleteEvent": "❌",
+        "PullRequestReviewEvent": "\U0001f44d",
+        "IssueCommentEvent": "\U0001f4ac",
+        "ReleaseEvent": "\U0001f680",
+        "PublicEvent": "\U0001f513",
     }
+    verbs = T["activity_verbs"]
 
     result = []
     for e in events[:5]:
         etype = e.get("type", "")
         repo_name = e.get("repo", {}).get("name", "")
         created_at = e.get("created_at", "")
-        icon, verb = icons.get(etype, ("\U0001f4cc", etype))
+        icon = icons.get(etype, "\U0001f4cc")
+        verb = verbs.get(etype, etype)
 
         # Relative time
         try:
             dt = datetime.strptime(created_at, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
-            rel = _relative_time(dt)
+            rel = _relative_time(dt, lang)
         except (ValueError, TypeError):
             rel = ""
 
@@ -316,20 +412,30 @@ def extract_events(events):
     return result
 
 
-def _relative_time(dt):
+def _relative_time(dt, lang="zh"):
     now = datetime.now(timezone.utc)
     diff = now - dt
-    mins = diff.total_seconds() / 60
-    if mins < 60:
-        return f"{int(mins)}m ago"
-    hours = mins / 60
-    if hours < 24:
-        return f"{int(hours)}h ago"
-    days = hours / 24
-    if days < 30:
-        return f"{int(days)}d ago"
-    months = days / 30
-    return f"{int(months)}mo ago"
+    mins = int(diff.total_seconds() / 60)
+    if lang == "zh":
+        if mins < 60:
+            return f"{mins} 分钟前"
+        hours = mins // 60
+        if hours < 24:
+            return f"{hours} 小时前"
+        days = hours // 24
+        if days < 30:
+            return f"{days} 天前"
+        return f"{days // 30} 个月前"
+    else:
+        if mins < 60:
+            return f"{mins}m ago"
+        hours = mins // 60
+        if hours < 24:
+            return f"{hours}h ago"
+        days = hours // 24
+        if days < 30:
+            return f"{days}d ago"
+        return f"{days // 30}mo ago"
 
 
 # ---------------------------------------------------------------------------
@@ -384,10 +490,11 @@ def _stat_card(x, y, w, h, label, value, color=TEXT_PRIMARY):
     return "\n".join(parts)
 
 
-def build_svg(data):
+def build_svg(data, lang="zh"):
+    T = I18N.get(lang, I18N["en"])
     stats = extract_stats(data)
     languages = extract_languages(data["gql"])
-    activities = extract_events(data["events"])
+    activities = extract_events(data["events"], lang)
 
     # Header info
     user = data["user"]
@@ -438,23 +545,23 @@ def build_svg(data):
     # Name
     parts.append(_text(132, 58, display_name, size=22, bold=True))
     # Title
-    parts.append(_text(132, 84, "Researcher on Embodied AI Security", size=14,
-                       color=TEXT_SECONDARY))
+    parts.append(_text(132, 84, T["title"], size=14, color=TEXT_SECONDARY))
     # Motto
-    parts.append(_text(132, 108, '"Come on pick up the pace!"', size=12,
-                       color=TEXT_DIM, extra='font-style="italic"'))
-    # School tag below
-    parts.append(_text(132, 130, "\U0001f393  中山大学 网络空间安全学院", size=12,
+    parts.append(_text(132, 108, T["motto"], size=12, color=TEXT_DIM,
+                       extra='font-style="italic"'))
+    # School
+    school_icon = "\U0001f393" if lang == "zh" else "\U0001f393"
+    parts.append(_text(132, 130, f"{school_icon}  {T['school']}", size=12,
                        color=TEXT_SECONDARY))
 
     # -- Stats cards (right side)
     card_w, card_h = 86, 56
     card_y = 42
     cards_data = [
-        (stats["stars"], "Stars"),
-        (stats["followers"], "Followers"),
-        (stats["repos"], "Repos"),
-        (stats["contributions"], "Contribs"),
+        (stats["stars"], T["stat_stars"]),
+        (stats["followers"], T["stat_followers"]),
+        (stats["repos"], T["stat_repos"]),
+        (stats["contributions"], T["stat_contribs"]),
     ]
     for i, (val, lbl) in enumerate(cards_data):
         cx = WIDTH - PAD - (4 - i) * (card_w + 10)
@@ -475,36 +582,28 @@ def build_svg(data):
     sec_y = 175
 
     # Research interests
-    parts.append(_section_label(col1_x, sec_y, "Research"))
+    parts.append(_section_label(col1_x, sec_y, T["sect_research"]))
     badges_y = sec_y + 20
     bx = col1_x
     by = badges_y
-    research_tags = [
-        ("Embodied AI Security", "#1a2a3a", ACCENT_BLUE),
-        ("Threat Intelligence", "#1a2a1a", ACCENT_GREEN),
-        ("Pentesting & CTF", "#2a1a1a", ACCENT_ORANGE),
-        ("Artificial Intelligence", "#1a1a2a", ACCENT_PURPLE),
-    ]
-    for tag, bg_c, fg_c in research_tags:
+    # Max x before we bleed into the right column
+    badge_limit = col2_x - 16
+    for tag, bg_c, fg_c in T["research_tags"]:
+        # Estimate width, wrap _before_ rendering if it won't fit
+        est_w = len(tag) * 7 + 20 + 8
+        if bx > col1_x and bx + est_w > badge_limit:
+            bx = col1_x
+            by += 32
         w_used, svg = _badge(bx, by, tag, bg=bg_c, fg=fg_c)
         parts.append(svg)
         bx += w_used
-        # Wrap to next line
-        if bx > col1_x + 380:
-            bx = col1_x
-            by += 32
 
     # Tech Stack (right column)
-    parts.append(_section_label(col2_x, sec_y, "Tech Stack", accent=ACCENT_GREEN))
+    parts.append(_section_label(col2_x, sec_y, T["sect_tech_stack"], accent=ACCENT_GREEN))
     tech_y = sec_y + 20
-    tech_list = [
-        ("Python", "#3572A5"),
-        ("C / C++", "#f34b7d"),
-        ("Rust", "#dea584"),
-    ]
     tx = col2_x
     ty = tech_y
-    for tname, tcolor in tech_list:
+    for tname, tcolor in T["tech_stack"]:
         # Colored dot
         parts.append(f'<circle cx="{tx + 8}" cy="{ty + 8}" r="5" fill="{tcolor}"/>')
         parts.append(_text(tx + 20, ty + 13, tname, size=13))
@@ -520,11 +619,11 @@ def build_svg(data):
 
     # -- Contribution heatmap
     heat_y = div2_y + 25
-    parts.append(_section_label(PAD, heat_y, "Contributions (Last Year)",
+    parts.append(_section_label(PAD, heat_y, T["sect_contrib"],
                                 accent=ACCENT_GREEN))
     # Total label
-    parts.append(_text(WIDTH - PAD, heat_y + 1,
-                       f"Total: {stats['contributions']:,}",
+    total_text = f"{T['total_label']}: {stats['contributions']:,}"
+    parts.append(_text(WIDTH - PAD, heat_y + 1, total_text,
                        size=12, color=TEXT_SECONDARY, anchor="end"))
 
     weeks = stats["weeks"]
@@ -534,15 +633,21 @@ def build_svg(data):
     gap = 3
     step = cell_s + gap
 
-    # Day labels (Mon, Wed, Fri)
-    day_labels = [("Mon", 1), ("Wed", 3), ("Fri", 5)]
+    # Day labels — use Chinese abbreviations when lang=zh
+    if lang == "zh":
+        day_labels = [("一", 1), ("三", 3), ("五", 5)]
+    else:
+        day_labels = [("Mon", 1), ("Wed", 3), ("Fri", 5)]
     for lbl, row in day_labels:
         parts.append(_text(heatmap_x - 8, heatmap_y + row * step + cell_s - 2,
                            lbl, size=9, color=TEXT_DIM, anchor="end"))
 
     # Month labels on top
-    months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-              "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    if lang == "zh":
+        months = [f"{i}月" for i in range(1, 13)]
+    else:
+        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     month_positions = {}  # week_index -> month_abbr
 
     if weeks:
@@ -596,14 +701,14 @@ def build_svg(data):
                 parts.append(f'<rect x="{cx}" y="{cy}" width="{cell_s}" '
                              f'height="{cell_s}" rx="2" fill="{HEAT_COLORS[0]}"/>')
         parts.append(_text(heatmap_x + 52 * step / 2, heatmap_y + 7 * step / 2 + 4,
-                           "(contribution data loads after first Action run)",
+                           T["fallback_contrib"],
                            size=11, color=TEXT_DIM, anchor="middle"))
 
     heat_bottom = heatmap_y + 7 * step + 10
 
     # -- Language distribution
     lang_y = heat_bottom + 20
-    parts.append(_section_label(PAD, lang_y, "Languages", accent=ACCENT_ORANGE))
+    parts.append(_section_label(PAD, lang_y, T["sect_languages"], accent=ACCENT_ORANGE))
     lang_y += 24
 
     if languages:
@@ -632,12 +737,12 @@ def build_svg(data):
         lang_bottom = lang_y + len(languages) * 30
     else:
         lang_bottom = lang_y + 20
-        parts.append(_text(PAD + 8, lang_y, "(No public repos yet)", size=12,
+        parts.append(_text(PAD + 8, lang_y, T["fallback_langs"], size=12,
                            color=TEXT_DIM))
 
     # -- Recent Activity
     act_y = lang_bottom + 16
-    parts.append(_section_label(PAD, act_y, "Recent Activity", accent=ACCENT_CYAN))
+    parts.append(_section_label(PAD, act_y, T["sect_activity"], accent=ACCENT_CYAN))
     act_y += 22
 
     if activities:
@@ -653,7 +758,7 @@ def build_svg(data):
         act_bottom = act_y + len(activities) * 24 + 8
     else:
         act_bottom = act_y + 20
-        parts.append(_text(PAD + 2, act_y, "(No recent public activity)", size=12,
+        parts.append(_text(PAD + 2, act_y, T["fallback_activity"], size=12,
                            color=TEXT_DIM))
 
     # -- Footer
@@ -673,7 +778,7 @@ def build_svg(data):
         lx += len(text) * 7 + 60
 
     parts.append(_text(WIDTH - PAD, foot_y + 16,
-                       f"updated {data['generated_at']}",
+                       f"{T['updated']} {data['generated_at']}",
                        size=10, color=TEXT_DIM, anchor="end"))
 
     # Dynamic SVG height — use actual bottom
@@ -698,18 +803,25 @@ def build_svg(data):
 
 def main():
     global OUTPUT
-    # Simple arg parsing: --output/-o flag or positional
+    # Simple arg parsing
     args = sys.argv[1:]
+    langs_to_build = []  # empty means "all"
     i = 0
     while i < len(args):
         if args[i] in ("--output", "-o") and i + 1 < len(args):
             OUTPUT = args[i + 1]
+            i += 2
+        elif args[i] in ("--lang", "-l") and i + 1 < len(args):
+            langs_to_build.append(args[i + 1])
             i += 2
         elif not args[i].startswith("-"):
             OUTPUT = args[i]
             i += 1
         else:
             i += 1
+
+    if not langs_to_build:
+        langs_to_build = ["zh", "en"]
 
     # Try to load avatar from local file as fallback
     local_avatar = "avatar.png"
@@ -723,14 +835,17 @@ def main():
         print("[*] Generating with fallback data ...")
         data = _fallback_data(_fallback_avatar)
 
-    print(f"[*] Generating SVG ...")
-    svg = build_svg(data)
+    for lang in langs_to_build:
+        suffix = "" if lang == "zh" else f"_{lang}"
+        out_name = OUTPUT.replace(".svg", f"{suffix}.svg")
+        print(f"[*] Generating {lang} SVG ...")
+        svg = build_svg(data, lang=lang)
 
-    with open(OUTPUT, "w", encoding="utf-8") as f:
-        f.write(svg)
+        with open(out_name, "w", encoding="utf-8") as f:
+            f.write(svg)
 
-    size_kb = os.path.getsize(OUTPUT) / 1024
-    print(f"[+] Written {OUTPUT} ({size_kb:.1f} KB)")
+        size_kb = os.path.getsize(out_name) / 1024
+        print(f"[+] Written {out_name} ({size_kb:.1f} KB)")
 
 
 def _fallback_data(avatar_url=""):
