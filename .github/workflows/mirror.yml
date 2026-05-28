@@ -1,0 +1,33 @@
+name: Mirror to SYSU GitLab
+
+on:
+  push:
+    branches: ["**"]   # 所有分支
+    tags: ["**"]       # 所有 tag
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout full repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 必须拿完整历史
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.GITLAB_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+          # 防止 host 验证失败
+          ssh-keyscan git.sysu.edu.cn >> ~/.ssh/known_hosts
+
+      - name: Add GitLab remote
+        run: |
+          git remote add gitlab git@git.sysu.edu.cn:RenAhsAcme/RenAhsAcme.git
+
+      - name: Mirror push
+        run: |
+          git push --mirror gitlab
