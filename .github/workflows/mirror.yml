@@ -23,7 +23,7 @@ jobs:
 
       - name: Add GitLab remote
         run: |
-          git remote add gitlab https://git.sysu.edu.cn/RenAhsAcme/NeuronSpark-2026.git
+          git remote add gitlab https://git.sysu.edu.cn/RenAhsAcme/RenAhsAcme.git
 
       - name: Push mirror (with retry)
         run: |
