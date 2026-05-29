@@ -1,6 +1,6 @@
-<img src="DanHeng.jpeg" width="860" alt="Banner">
+<img src="https://github.com/RenAhsAcme/RenAhsAcme/blob/main/DanHeng.jpeg" width="860" alt="Banner">
 
-![Profile](profile.svg)
+![Profile](https://github.com/RenAhsAcme/RenAhsAcme/blob/main/profile.svg)
 
 <details>
 
