@@ -31,7 +31,7 @@
 <text x="132" y="108" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#6e7681" text-anchor="start" opacity="1.0" font-style="italic">"Come on pick up the pace!"</text>
 <text x="132" y="130" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >🎓  School of Cyber Science and Technology, Sun Yat-sen University</text>
 <rect x="446" y="42" width="86" height="56" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1" opacity="1.0"/>
-<text x="489.0" y="64" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" fill="#e6edf3" text-anchor="middle" font-weight="bold" opacity="1.0" >72</text>
+<text x="489.0" y="64" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" fill="#e6edf3" text-anchor="middle" font-weight="bold" opacity="1.0" >73</text>
 <text x="489.0" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e" text-anchor="middle" opacity="1.0" >Stars</text>
 <rect x="542" y="42" width="86" height="56" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1" opacity="1.0"/>
 <text x="585.0" y="64" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" fill="#e6edf3" text-anchor="middle" font-weight="bold" opacity="1.0" >7</text>
@@ -450,47 +450,48 @@
 <rect x="706" y="333" width="10" height="10" rx="2" fill="#0e4429"/>
 <rect x="706" y="346" width="10" height="10" rx="2" fill="#0e4429"/>
 <rect x="706" y="359" width="10" height="10" rx="2" fill="#161b22"/>
+<rect x="706" y="372" width="10" height="10" rx="2" fill="#161b22"/>
 <rect x="30" y="403" width="3" height="16" rx="2" fill="#d2991d"/>
 <text x="42" y="416" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" font-weight="bold" opacity="1.0" >Languages</text>
 <text x="30" y="449" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="end" opacity="1.0" >HTML</text>
 <rect x="38" y="439" width="340" height="12" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="38" y="439" width="130.21999999999997" height="12" rx="6" fill="#e34c26"/>
-<text x="386" y="449" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >38.3%</text>
+<rect x="38" y="439" width="129.88000000000002" height="12" rx="6" fill="#e34c26"/>
+<text x="386" y="449" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >38.2%</text>
 <text x="30" y="479" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="end" opacity="1.0" >Python</text>
 <rect x="38" y="469" width="340" height="12" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="38" y="469" width="92.48" height="12" rx="6" fill="#3572A5"/>
-<text x="386" y="479" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >27.2%</text>
+<rect x="38" y="469" width="92.14" height="12" rx="6" fill="#3572A5"/>
+<text x="386" y="479" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >27.1%</text>
 <text x="30" y="509" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="end" opacity="1.0" >TypeScript</text>
 <rect x="38" y="499" width="340" height="12" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
 <rect x="38" y="499" width="65.28" height="12" rx="6" fill="#3178c6"/>
 <text x="386" y="509" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >19.2%</text>
 <text x="30" y="539" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="end" opacity="1.0" >JavaScript</text>
 <rect x="38" y="529" width="340" height="12" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="38" y="529" width="21.08" height="12" rx="6" fill="#f1e05a"/>
-<text x="386" y="539" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >6.2%</text>
+<rect x="38" y="529" width="21.76" height="12" rx="6" fill="#f1e05a"/>
+<text x="386" y="539" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >6.4%</text>
 <text x="30" y="569" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="end" opacity="1.0" >Typst</text>
 <rect x="38" y="559" width="340" height="12" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
 <rect x="38" y="559" width="9.52" height="12" rx="6" fill="#58a6ff"/>
 <text x="386" y="569" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >2.8%</text>
 <rect x="30" y="593" width="3" height="16" rx="2" fill="#39d2c0"/>
 <text x="42" y="606" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" font-weight="bold" opacity="1.0" >Recent Activity</text>
-<text x="32" y="628" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" opacity="1.0" >🐛</text>
-<text x="58" y="628" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >opened issue in rmqg/codex-cx</text>
-<text x="830" y="628" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >1d ago</text>
-<text x="32" y="652" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" opacity="1.0" >⭐</text>
-<text x="58" y="652" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >starred RenAhsAcme/RenAhsAcme.github.io</text>
-<text x="830" y="652" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >1d ago</text>
-<text x="32" y="676" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" opacity="1.0" >📌</text>
-<text x="58" y="676" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >CommitCommentEvent rmqg/Mirror-to-SYSU</text>
-<text x="830" y="676" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >1d ago</text>
-<text x="32" y="700" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" opacity="1.0" >⭐</text>
-<text x="58" y="700" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >starred Candlest/kaiwu-semi</text>
-<text x="830" y="700" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >1d ago</text>
-<text x="32" y="724" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" opacity="1.0" >📦</text>
-<text x="58" y="724" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >pushed to RenAhsAcme/Mirror-to-SYSU</text>
+<text x="32" y="628" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" opacity="1.0" >⭐</text>
+<text x="58" y="628" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >starred Michael-Jetson/Robotics_Tutorial</text>
+<text x="830" y="628" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >19m ago</text>
+<text x="32" y="652" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" opacity="1.0" >🐛</text>
+<text x="58" y="652" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >opened issue in rmqg/codex-cx</text>
+<text x="830" y="652" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >2d ago</text>
+<text x="32" y="676" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" opacity="1.0" >⭐</text>
+<text x="58" y="676" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >starred RenAhsAcme/RenAhsAcme.github.io</text>
+<text x="830" y="676" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >2d ago</text>
+<text x="32" y="700" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" opacity="1.0" >📌</text>
+<text x="58" y="700" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >CommitCommentEvent rmqg/Mirror-to-SYSU</text>
+<text x="830" y="700" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >2d ago</text>
+<text x="32" y="724" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3" text-anchor="start" opacity="1.0" >⭐</text>
+<text x="58" y="724" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >starred Candlest/kaiwu-semi</text>
 <text x="830" y="724" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#6e7681" text-anchor="end" opacity="1.0" >2d ago</text>
 <line x1="30" y1="760" x2="830" y2="760" stroke="#30363d" stroke-width="1"/>
 <text x="30" y="781" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >🌐  RenAhsAcme.github.io</text>
 <text x="230" y="781" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="start" opacity="1.0" >🐍  github.com/RenAhsAcme</text>
-<text x="830" y="781" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#6e7681" text-anchor="end" opacity="1.0" >updated 2026-06-05 20:12 UTC</text>
+<text x="830" y="781" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" fill="#6e7681" text-anchor="end" opacity="1.0" >updated 2026-06-06 04:19 UTC</text>
 </svg>
