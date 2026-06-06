@@ -69,7 +69,7 @@ FONT_MONO = ("'SF Mono', 'Fira Code', 'Fira Mono', "
 I18N = {
     "zh": {
         "title": "本科在读",
-        "school": "中山大学网络空间安全学院",
+        "school": "中山大学",
         "motto": 'Come up pick up the pace!',
         "sect_research": "研究方向",
         "sect_tech_stack": "技术栈",
@@ -112,7 +112,7 @@ I18N = {
     },
     "en": {
         "title": "UGRD",
-        "school": "School of Cyber Science and Technology, Sun Yat-sen University",
+        "school": "Sun Yat-sen University",
         "motto": '"Come on pick up the pace!"',
         "sect_research": "Research",
         "sect_tech_stack": "Tech Stack",
